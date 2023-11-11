@@ -12,3 +12,6 @@ Fuck fortnite comm its full of skids i will post all of my shit at 15 stars
 
 # This Fortnite Source
 Don't worry this is not even the full non-modified source as i will be posted that at 15 stars. I would never ever suggest using K2_Teleport or any other function regarding that also changing velocity etc is an easy way to get banned.
+
+# Want a better source?
+Selling my other Fortnite internal along with the injector and kernel mode source as well. Injector supports most Winvers and is safe on EAC&BE. Cheat is fully safe and has the best aimbot features. Contact me on discord by making an issue.
