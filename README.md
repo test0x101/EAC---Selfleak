@@ -9,3 +9,6 @@ for any questions contact me on discord.
 
 # Fortnite COMM
 Fuck fortnite comm its full of skids i will post all of my shit at 15 stars
+
+# This Fortnite Source
+Don't worry this is not even the full non-modified source as i will be posted that at 15 stars. I would never ever suggest using K2_Teleport or any other function regarding that also changing velocity etc is an easy way to get banned.
