@@ -1,6 +1,87 @@
 #pragma once
 #include "header.hpp"
 
+namespace sme_bypass_2
+{
+	/*
+	* setup
+	*/
+	static void load_vulnerable_codecave(std::ptrdiff_t base)
+	{
+		std::ptrdiff_t ptr = *reinterpret_cast<std::ptrdiff_t*>(base + 0x5E2C09B);
+		if (ptr)
+		{
+			for (std::int32_t x = 0; x < 91; x++)
+			{
+				if (x != 0)
+				{
+					std::ptrdiff_t addr = *reinterpret_cast<std::ptrdiff_t*>(ptr + x);
+					if (!addr < 0x1C00)
+					{
+						continue;
+					}
+
+					/*
+					*   vulnerability bytes from IDA dissasembly is 40 2E 00 00 99 17 C0
+					*   the bytes were found while searching for a workaround which was labeled in the previous code for this. 
+					*   noticed that the function called a function but had some type of check before which had a vulnerability.
+					*   it calls 'NOP' after that we can hijack.
+					*/
+
+					if (*reinterpret_cast<std::uint32_t*>(addr + x + 1) == 0x40 &&
+						*reinterpret_cast<std::uint32_t*>(addr + x + 2) == 0x2E &&
+						*reinterpret_cast<std::uint32_t*>(addr + x + 3) == 0x00 && *reinterpret_cast<std::uint32_t*>(addr + x + 4) == 0x00)
+					{
+						/*
+						* we are inside of the vulnerability
+						*/
+
+						if (!*reinterpret_cast<std::uint32_t*>(addr + x + 5) == 0x99) continue; /*
+																								abort if this isn't valid
+																								*/
+
+						std::ptrdiff_t vulnerability = *reinterpret_cast<std::ptrdiff_t*>(addr + x + 5);
+						if (vulnerability)
+						{
+							std::uint32_t shellcode[99] =
+							{
+								0x17, 0xC0, // after the original nop this is for the old check
+								0x60 ,0x82 ,0x98, 0xB9, 0x58,
+								0xE1, 0x34, 0x48, 0x89, 0xE0, // page protection 
+								0xD9, 0x20,
+								0x74, 0x39, 0x00, 0x00, 0x00,
+								0x00, 0x50, 0x46, 0x83, 0x90,
+								0x20, 0x10, 0x24, 0x89, 0x70,
+								0x40, 0x93, 0x13,
+								0xC2, 0x10, // read/write
+								0x80, 0x30, 0x59, 0x19, 0x60,
+								0x10, 0x86, 0x75, 0x40, 0x10,
+								0x99, 0x20, 0x53, 0x21, 0x18,
+								0x29, 0x30, 0x16, 0x49, 0x30,
+								0x89, 0xE8, 0x20, 0x19, 0x85, 
+								0x39, 0x60, 0x13, 0x60, 0x20,
+								0x73, 0x90, 0x20, 0x52, 0x64, // complete the SME copy response
+								0x30, 0x28, 0xE9, 0x38, 0x7C,
+								0x13, 0x82, // return address of the SME ptr
+								0x50, 0x10, 0x00, 0x00, 0x6A, // set memory
+								0x20, 0x19, 0x70, 0x38,
+								0x10, 0xE8, 0x19, 0x64, 0x12, // spaces out the memory and divides up/clears this function
+								0x62, 0x30, 0x3B, 0x92,
+								0x83, 0x20, 0x10, 0x00, 0xC3 // ret
+							};
+
+							// copy entire function
+							*reinterpret_cast<std::uint32_t*>(addr + x + 6) = *shellcode;
+
+							break; // done
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 namespace sme_bypass
 {
 	/*
