@@ -15,3 +15,6 @@ Don't worry this is not even the full non-modified source as i will be posted th
 
 # Want a better source?
 Selling my other Fortnite internal along with the injector and kernel mode source as well. Injector supports most Winvers and is safe on EAC&BE. Cheat is fully safe and has the best aimbot features. Contact me on discord by making an issue.
+
+# SME
+use latest sme bypass
