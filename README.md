@@ -1,20 +1,18 @@
-# EAC-injector
-This is a self-leak for my EAC injector that fully skips any strips and completely lets the shellcode stay alive. Compact with km-to-um imported spoofing return address.
-If your going to paste this give me propery credits this does not inclue the EAC injector yet but will post with 20 stars.
-Full cheat source without anything removed and completely UD version at 15 stars.
+# Fortnite EAC SelfLeak 
+This source has been public for a couple weeks now, let me go into full detail how this source/what it does.
 
-# Injector
-prevents any EAC/BE strips i am not aloud to publicly post the EAC signed driver certificaite that was purchased by me from a EAC dev that doesn't want his name disclosed.
-for any questions contact me on discord.
+# Features
+- SME Bypassing
+- Supports Port Binding (Optional more of a custom redirect function "still testing")
+- Bypasses EAC/EOS's packet system and has a semi operational method to cypher different packets.
+- Injector is FUD and injects through a custom export instead of classic DLLMain
+- Injector supports custom imports this source has spoofcalling imports supported "test functionalitly"
+- Allocates in a legit region so dont worry about getting tapped for injection.
 
-# Fortnite COMM
-Fuck fortnite comm its full of skids i will post all of my shit at 15 stars
+# Cheat it self
+- Uses UE5 to render (UCanvas)
+- Instead of hooking PostRender/DrawTransition to get canvas we are creating our own using Kismet rendering tools (found inside of UE5 SDK)
+- Cool features like Bullet TP, and Fake Lag.
 
-# This Fortnite Source
-Don't worry this is not even the full non-modified source as i will be posted that at 15 stars. I would never ever suggest using K2_Teleport or any other function regarding that also changing velocity etc is an easy way to get banned.
-
-# Want a better source?
-Selling my other Fortnite internal along with the injector and kernel mode source as well. Injector supports most Winvers and is safe on EAC&BE. Cheat is fully safe and has the best aimbot features. Contact me on discord by making an issue.
-
-# SME
-use latest sme bypass
+# Where injector?
+- Posting injector along side full source at 50 stars. :) 
